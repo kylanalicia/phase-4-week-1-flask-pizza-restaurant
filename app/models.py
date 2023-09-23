@@ -1,6 +1,5 @@
-from sqlalchemy import SQLalchemy
 
-db = SQLalchemy()
+from app import db
 
 class Restaurant(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -1,6 +1,10 @@
 from flask import Flask
+from sqlalchemy import SQLalchemy
+
 
 app = Flask(__name__)
+
+db = SQLalchemy()
 
 def create_app():
     from app import routes  # Import routes here
@@ -9,4 +13,4 @@ def create_app():
 # Create the app instance using create_app
 app = create_app()
 
-# Import other parts of your app here if needed
+
