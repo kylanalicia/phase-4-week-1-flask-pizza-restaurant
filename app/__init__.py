@@ -1,10 +1,12 @@
 from flask import Flask
-from sqlalchemy import SQLalchemy
+from sqlalchemy import SQLAlchemy
 
-
+# create flass application instance
 app = Flask(__name__)
 
-db = SQLalchemy()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqllite///phase-4-week-1-flask-pizza-restaurant.db'
+
+db = SQLAlchemy()
 
 def create_app():
     from app import routes  # Import routes here
