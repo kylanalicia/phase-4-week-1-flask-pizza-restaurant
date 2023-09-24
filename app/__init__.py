@@ -1,16 +1,13 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy  # Correct import statement
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
-
-# Create Flask application instance
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///phase-4-week-1-flask-pizza-restaurant.db'
+migrate = Migrate()
 
 def create_app():
-    from app import routes  # Import routes here
+    app = Flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///your_database.db'
+    db.init_app(app)
+    migrate.init_app(app, db)
     return app
-
-# Create the app instance using create_app
-app = create_app()
