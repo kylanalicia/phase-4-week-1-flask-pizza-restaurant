@@ -7,8 +7,8 @@ app = create_app()
 migrate = Migrate(app, db)
 
 
-def make_shell_context():
-    return dict(app=app, db=db, Restaurant=Restaurant, Pizza=Pizza, RestaurantPizza=RestaurantPizza)
+# def make_shell_context():
+#     return dict(app=app, db=db, Restaurant=Restaurant, Pizza=Pizza, RestaurantPizza=RestaurantPizza)
 
 if __name__ == '__main__':
     app.run(debug=True)
