@@ -12,12 +12,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Initialize the SQLAlchemy database
 db.init_app(app)
 
+# Route to get all restaurants
 @app.route('/restaurants', methods=['GET'])
 def get_restaurants():
     restaurants = Restaurant.query.all()
     restaurant_data = [{"id": r.id, "name": r.name, "address": r.address} for r in restaurants]
     return jsonify(restaurant_data)
 
+# Route to get a single restaurant by ID
 @app.route('/restaurants/<int:id>', methods=['GET'])
 def get_restaurant(id):
     restaurant = Restaurant.query.get(id)
@@ -32,6 +34,7 @@ def get_restaurant(id):
         return jsonify(restaurant_data)
     else:
         return jsonify({"error": "Restaurant not found"}), 404
+
 
 @app.route('/restaurants/<int:id>', methods=['DELETE'])
 def delete_restaurant(id):
