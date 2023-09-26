@@ -1,15 +1,18 @@
+# Import necessary modules and classes from your Flask application.
 from app import create_app
 from app.models import db, Restaurant, Pizza, RestaurantPizza
 from random import choice as rc
 from faker import Faker
 
+# Create a Flask app instance using the create_app() factory function.
 app = create_app()
 
+# Create a Faker instance for generating fake data.
 fake = Faker()
 
 # Create and seed your database
 with app.app_context():
-    # Create tables
+    # Create database tables
     db.create_all()
 
     # Create Restaurant instances
@@ -24,7 +27,7 @@ with app.app_context():
     restaurant_pizza1 = RestaurantPizza(price=15.0, restaurant_id=1, pizza_id=1)
     restaurant_pizza2 = RestaurantPizza(price=20.0, restaurant_id=1, pizza_id=2)
 
-    # Commit the changes
+    # Add objects to the session and commit changes to the database
     db.session.add(restaurant1)
     db.session.add(restaurant2)
     db.session.add(pizza1)
@@ -33,4 +36,5 @@ with app.app_context():
     db.session.add(restaurant_pizza2)
     db.session.commit()
 
+# Print a success message after seeding the database.
 print("Database seeded successfully.")
